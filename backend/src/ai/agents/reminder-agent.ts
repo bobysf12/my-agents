@@ -1,14 +1,15 @@
-import { Context } from "../storages/context";
-import { ToolRegistry } from "../tools/tool-registry";
+import { ConversationMessage, ParticipantRole } from "../types/common";
 import { Agent } from "./agent";
 
 export class ReminderAgent extends Agent {
-    name: string = "Reminder Agent";
-    description: string = "An Agent that creates a Reminder based on given input";
+    constructor() {
+        super({
+            name: "Reminder Agent",
+            description: "An Agent that creats a Reminder based on given input",
+        });
+    }
 
-    processRequest(query: string, context: Context, tools: ToolRegistry): Promise<string> {
-        const reminders = context.get("reminders") || [];
-        context.append("reminders", [...reminders, "New reminder added"]);
-        return Promise.resolve("Reminder created");
+    processRequest(query: string, chatHistory: ConversationMessage[]): Promise<ConversationMessage> {
+        return Promise.resolve({ role: ParticipantRole.ASSISTANT, content: [{ text: "Reminder created" }] });
     }
 }

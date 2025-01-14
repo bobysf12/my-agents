@@ -1,7 +1,14 @@
 import { Context } from "../storages/context";
 import { ToolRegistry } from "../tools/tool-registry";
+import { ConversationMessage } from "../types/common";
 
-export type AgentOptions = {};
+export type AgentOptions = {
+    // The name of the agent
+    name: string;
+
+    // A description of the agent's purpose or capabilities
+    description: string;
+};
 
 export type AgentProcessingResult = {
     query: string;
@@ -18,12 +25,26 @@ export type AgentResponse = {
 };
 
 export abstract class Agent {
+    id: string;
     name: string;
 
     description: string;
 
     // Process the query and return a response
-    abstract processRequest(query: string, context: Context, tools: ToolRegistry): Promise<string>;
+    abstract processRequest(query: string, chatHistory: ConversationMessage[]): Promise<ConversationMessage>;
 
-    constructor(options: AgentOptions) {}
+    constructor(options: AgentOptions) {
+        this.name = options.name;
+        this.description = options.description;
+        this.id = this.generateIdFromName(options.name);
+    }
+
+    private generateIdFromName(name: string): string {
+        // Remove special characters and replace spaces with hyphens
+        const key = name
+            .replace(/[^a-zA-Z0-9\s-]/g, "")
+            .replace(/\s+/g, "-")
+            .toLowerCase();
+        return key;
+    }
 }

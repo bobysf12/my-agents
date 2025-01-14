@@ -1,6 +1,5 @@
 import OpenAI from "openai";
 import { Agent } from "../agents/agent";
-import { createLogger } from "../../utils/logger";
 
 export class Classifier {
     private openai: OpenAI;
@@ -30,8 +29,6 @@ export class Classifier {
             model: "gpt-3.5-turbo-instruct",
             prompt,
         });
-
-        createLogger().debug(response, "openai response");
 
         const classification = response.choices[0].text.replace(/\t/g, "").trim();
         return classification || "None";

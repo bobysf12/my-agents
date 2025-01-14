@@ -1,14 +1,15 @@
-import { Context } from "../storages/context";
-import { ToolRegistry } from "../tools/tool-registry";
+import { ConversationMessage, ParticipantRole } from "../types/common";
 import { Agent } from "./agent";
 
 export class EcommerceAgent extends Agent {
-    name: string = "Ecommerce Agent";
-    description: string = "An Agent that goes to the web and find the cheapest price of the given item name";
+    constructor() {
+        super({
+            name: "Ecommerce Agent",
+            description: "An Agent that goes to the web and find the cheapest price of the given item name",
+        });
+    }
 
-    processRequest(query: string, context: Context, tools: ToolRegistry): Promise<string> {
-        const reminders = context.get("reminders") || [];
-        context.append("reminders", [...reminders, "New reminder added"]);
-        return Promise.resolve("Reminder created");
+    processRequest(query: string, chatHistory: ConversationMessage[]): Promise<ConversationMessage> {
+        return Promise.resolve({ role: ParticipantRole.USER, content: [{ text: "The cheapest price is 12k" }] });
     }
 }
