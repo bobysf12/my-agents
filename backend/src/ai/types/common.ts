@@ -8,3 +8,5 @@ export type ConversationMessage = {
 };
 
 export type TimestampedMessage = ConversationMessage & { timestamp: number };
+
+export type TemplateVariables = Record<string, string | string[]>;

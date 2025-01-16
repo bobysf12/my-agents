@@ -1,5 +1,4 @@
-import { Context } from "../storages/context";
-import { ToolRegistry } from "../tools/tool-registry";
+import { Tool } from "../tools/tool";
 import { ConversationMessage } from "../types/common";
 
 export type AgentOptions = {
@@ -8,6 +7,8 @@ export type AgentOptions = {
 
     // A description of the agent's purpose or capabilities
     description: string;
+
+    tools?: Tool[];
 };
 
 export type AgentProcessingResult = {
@@ -25,10 +26,11 @@ export type AgentResponse = {
 };
 
 export abstract class Agent {
-    id: string;
-    name: string;
+    readonly id: string;
+    readonly name: string;
+    readonly description: string;
 
-    description: string;
+    protected tools: Tool[];
 
     // Process the query and return a response
     abstract processRequest(query: string, chatHistory: ConversationMessage[]): Promise<ConversationMessage>;
@@ -37,6 +39,7 @@ export abstract class Agent {
         this.name = options.name;
         this.description = options.description;
         this.id = this.generateIdFromName(options.name);
+        this.tools = options.tools || [];
     }
 
     private generateIdFromName(name: string): string {

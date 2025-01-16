@@ -31,6 +31,9 @@ export class Classifier {
         });
 
         const classification = response.choices[0].text.replace(/\t/g, "").trim();
-        return classification || "None";
+        if (!classification || classification.trim() === "") {
+            return "No agents classified for the given query.";
+        }
+        return classification;
     }
 }
