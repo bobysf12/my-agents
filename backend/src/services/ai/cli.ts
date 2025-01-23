@@ -1,16 +1,18 @@
 import { Command } from "commander";
-import { OPENAI_API_KEY } from "../config/globalConfig";
-import { createLogger } from "../utils/logger";
+import { OPENAI_API_KEY } from "../../config/globalConfig";
+import { createLogger } from "../../utils/logger";
 import { LLMOpenAIAgent } from "./agents/llm-openai-agent";
 import { Classifier } from "./classifiers/classifier";
 import Director from "./director";
 import { InMemoryChatStorage } from "./storages/in-memory-storage";
 import { GetWeatherDataTool, GetWeatherLocationTool } from "./tools/weatherTool";
+import { WebScraperTool } from "./tools/scraperTool";
 
 const logger = createLogger("ai-service");
 
 const getWeatherLocationTool = new GetWeatherLocationTool("aa5e383284fda712b228fb4170cf433a");
 const getWeatherDataTool = new GetWeatherDataTool("aa5e383284fda712b228fb4170cf433a");
+const webscraperTool = new WebScraperTool();
 
 const classifier = new Classifier(OPENAI_API_KEY);
 const director = new Director({ classifier, storage: new InMemoryChatStorage(), logger });
@@ -30,11 +32,32 @@ director.registerAgent(
 
 director.registerAgent(
     new LLMOpenAIAgent({
-        tools: [],
+        tools: [webscraperTool],
         model: "gpt-4o-mini",
         apiKey: OPENAI_API_KEY,
-        name: "Travel Agent",
-        description: "An Agent that respond to all Travel inquiries",
+        name: "Hotel price agent",
+        description: "An Agent that goes through the given hotel link and check the price",
+    }),
+);
+
+director.registerAgent(
+    new LLMOpenAIAgent({
+        tools: [webscraperTool],
+        model: "gpt-4o-mini",
+        apiKey: OPENAI_API_KEY,
+        name: "Website Summarizer",
+        description: "An Agent that goes through the given website url, summarizes the website content",
+    }),
+);
+
+director.registerAgent(
+    new LLMOpenAIAgent({
+        tools: [webscraperTool],
+        model: "gpt-4o-mini",
+        apiKey: OPENAI_API_KEY,
+        name: "Tokopedia Agent",
+        description:
+            "An Agent that goes through tokopedia.com https://tokopedia.com/search?q=<item name>, find the most trusted, cheap, and reviewed items, list it down, and make a summary out of the found items",
     }),
 );
 
@@ -53,6 +76,11 @@ program.parse();
 const query = program.args[0];
 const userId = "defaultUserId"; // Replace with actual user ID logic
 const sessionId = "defaultSessionId"; // Replace with actual session ID logic
+
+//webscraperTool
+//    .execute({ url: "https://www.tokopedia.com/search?q=iphone+15" })
+//    .then((result) => console.log(convert(result)))
+//    .catch(console.log);
 
 askDirector(query, userId, sessionId)
     .then((response) => {

@@ -67,8 +67,6 @@ export class LLMOpenAIAgent extends Agent {
         let iterationCount = 0;
         let finishReason = "";
 
-        const contentResults = [];
-
         do {
             // Send a request to the OpenAI API for a chat completion
             const response = await this.openai.chat.completions.create({
@@ -94,13 +92,6 @@ export class LLMOpenAIAgent extends Agent {
                         // Execute the tool with the parsed arguments
                         const toolResult = await tool.execute(toolArgs);
 
-                        const content = {
-                            toolUse: {
-                                toolCall,
-                            },
-                        };
-                        // Store the tool usage information
-                        contentResults.push(content);
                         // Add the tool's result to the conversation history
                         messages.push({ role: "tool", tool_call_id: toolCall.id, content: JSON.stringify(toolResult) });
                     } else {
