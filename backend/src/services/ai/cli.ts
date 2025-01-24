@@ -57,7 +57,7 @@ director.registerAgent(
         apiKey: OPENAI_API_KEY,
         name: "Tokopedia Agent",
         description:
-            "An Agent that goes through tokopedia.com https://tokopedia.com/search?q=<item name>, find the most trusted, cheap, and reviewed items, list it down, and make a summary out of the found items",
+            "An Agent that goes through tokopedia.com https://tokopedia.com/search?q=<item name>, find the most trusted, cheap, and reviewed items, list all the links down, then open the links one by one to get more details of the product, and make a summary out of the found items",
     }),
 );
 

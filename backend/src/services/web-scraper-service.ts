@@ -1,5 +1,8 @@
-import { chromium } from "playwright";
+import { chromium } from "playwright-extra";
+import StealthPlugin from "puppeteer-extra-plugin-stealth";
 import { createLogger } from "../utils/logger";
+
+chromium.use(StealthPlugin());
 
 const logger = createLogger("scrape-service");
 

@@ -54,6 +54,7 @@ export class LLMOpenAIAgent extends Agent {
     }
 
     async processRequest(query: string, chatHistory: ConversationMessage[] = []): Promise<ConversationMessage> {
+        this.log.info(`Processing request: ${query}`);
         this.updateSystemPrompt();
         const messages: ChatCompletionMessageParam[] = [
             {
@@ -68,6 +69,7 @@ export class LLMOpenAIAgent extends Agent {
         let finishReason = "";
 
         do {
+            this.log.info(`Sending request to OpenAI API with model: ${this.model}`);
             // Send a request to the OpenAI API for a chat completion
             const response = await this.openai.chat.completions.create({
                 tools: this.useTools ? this.getToolDefinitions() : undefined,
@@ -76,12 +78,14 @@ export class LLMOpenAIAgent extends Agent {
                 messages,
             });
 
+            this.log.info(`Received response from OpenAI API: ${JSON.stringify(response.choices[0].message)}`);
             // Add the assistant's message to the conversation history
             messages.push(response.choices[0].message);
 
             // Check if there are any tool calls in the assistant's message
             const toolCalls = response.choices[0]?.message?.tool_calls;
             if (toolCalls && toolCalls.length > 0) {
+                this.log.info(`Tool calls detected: ${JSON.stringify(toolCalls)}`);
                 // Iterate through each tool call
                 for (const toolCall of toolCalls) {
                     // Find the corresponding tool based on the tool call name
@@ -89,6 +93,7 @@ export class LLMOpenAIAgent extends Agent {
                     if (tool) {
                         // Parse the arguments for the tool call
                         const toolArgs = JSON.parse(toolCall.function.arguments);
+                        this.log.info(`Executing tool: ${tool.name} with arguments: ${JSON.stringify(toolArgs)}`);
                         // Execute the tool with the parsed arguments
                         const toolResult = await tool.execute(toolArgs);
 
@@ -110,6 +115,7 @@ export class LLMOpenAIAgent extends Agent {
             return { role: ParticipantRole.ASSISTANT, content: [{ text: finalResponse.content }] };
         }
 
+        this.log.info("Unable to get a valid response after multiple attempts.");
         return { role: ParticipantRole.ASSISTANT, content: [{ text: "Unable to get response" }] };
     }
 

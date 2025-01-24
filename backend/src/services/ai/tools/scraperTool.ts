@@ -33,7 +33,7 @@ export class WebScraperTool extends Tool {
     async execute(args: Record<string, any>) {
         const { url } = args;
 
-        const results = await getHTMLBody([url], false);
+        const results = await getHTMLBody([url], true);
 
         return convert(results[0].bodyHTML);
     }

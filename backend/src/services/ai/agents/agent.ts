@@ -1,3 +1,4 @@
+import { createLogger } from "../../../utils/logger";
 import { Tool } from "../tools/tool";
 import { ConversationMessage } from "../types/common";
 
@@ -29,6 +30,7 @@ export abstract class Agent {
     readonly id: string;
     readonly name: string;
     readonly description: string;
+    protected log: ReturnType<typeof createLogger>;
 
     protected tools: Tool[];
 
@@ -40,6 +42,7 @@ export abstract class Agent {
         this.description = options.description;
         this.id = this.generateIdFromName(options.name);
         this.tools = options.tools || [];
+        this.log = createLogger(options.name);
     }
 
     private generateIdFromName(name: string): string {
