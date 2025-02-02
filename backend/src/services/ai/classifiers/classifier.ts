@@ -20,17 +20,24 @@ export class Classifier {
 
 		Agents: ${agentDescriptions}
 
-		Query: "${query}"
-
-		Agent name: 
+        Only return the agent name without adding explainations or any other contents.
 	`;
 
-        const response = await this.openai.completions.create({
-            model: "gpt-3.5-turbo-instruct",
-            prompt,
+        const response = await this.openai.chat.completions.create({
+            model: "gpt-4o",
+            messages: [
+                {
+                    role: "assistant",
+                    content: prompt,
+                },
+                {
+                    role: "user",
+                    content: query,
+                },
+            ],
         });
 
-        const classification = response.choices[0].text.replace(/\t/g, "").trim();
+        const classification = response.choices[0].message.content.replace(/\t/g, "").trim();
         if (!classification || classification.trim() === "") {
             return "No agents classified for the given query.";
         }

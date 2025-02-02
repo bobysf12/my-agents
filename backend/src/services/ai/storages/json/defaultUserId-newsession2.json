@@ -1,0 +1,202 @@
+{
+  "defaultUserId#newsession2#gmail-agent": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Get all incoming emails for this month, and delete all incoming emails from miraeasset.co.id"
+        }
+      ],
+      "timestamp": 1738212958727
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "I found 7 incoming emails from miraeasset.co.id for this month. All of these emails have been successfully deleted. If you need further assistance, feel free to ask!"
+        }
+      ],
+      "timestamp": 1738212969894
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Get all incoming emails for this month, and delete all incoming emails from linkedin"
+        }
+      ],
+      "timestamp": 1738213057375
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "I found 5 incoming emails from LinkedIn for this month, and I have successfully deleted them. If you need anything else, just let me know!"
+        }
+      ],
+      "timestamp": 1738213065658
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Get all incoming emails from yesterday and delete all of them"
+        }
+      ],
+      "timestamp": 1738286988476
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "There were no incoming emails from yesterday, so there are none to delete. If you need any further assistance, feel free to ask!"
+        }
+      ],
+      "timestamp": 1738286993968
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Get yesterday's emails and delete all of them"
+        }
+      ],
+      "timestamp": 1738287020404
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "I found one email from yesterday with the subject \"The DigitalOcean Newsletter: January 2025,\" and I have successfully deleted it. If you need further assistance, feel free to ask!"
+        }
+      ],
+      "timestamp": 1738287026640
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Get this week's emails and make summaries"
+        }
+      ],
+      "timestamp": 1738287110399
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "Here are the summaries of your emails from this week:\n\n1. **Upcoming 7% Price Adjustment for Concurrency plans – Effective March 1, 2025**  \n   - **From:** Travis CI  \n   - **Date:** January 30, 2025  \n   - **Snippet:** An important update about pricing due to rising IT infrastructure and operational costs.\n\n2. **Pemberitahuan Notasi Khusus, Ekuitas dalam Pemantauan, Papan Akselerasi, Pengembangan dan Utama**  \n   - **From:** MiraeAsset  \n   - **Date:** January 30, 2025  \n   - **Snippet:** Announcement regarding information on special notation lists for issuers and securities.\n\n3. **Akun Anda telah login di perangkat baru**  \n   - **From:** Tokopedia  \n   - **Date:** January 30, 2025  \n   - **Snippet:** Notification about a new login to your account on a new device.\n\n4. **Ajak Teman Buka UOB TMRW, dapatkan Cashback hingga Rp975 Ribu per Bulan!**  \n   - **From:** UOB TMRW  \n   - **Date:** January 30, 2025  \n   - **Snippet:** Promotion offering cashback rewards for friends who sign up for UOB TMRW.\n\n5. **DigitalOcean Verification Code**  \n   - **From:** DigitalOcean  \n   - **Date:** January 30, 2025  \n   - **Snippet:** Verification code request after sign-in attempt from a different location.\n\nIf you would like to delete any of these emails or take other actions, please let me know!"
+        }
+      ],
+      "timestamp": 1738287123507
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Get this week's emails and make summaries"
+        }
+      ],
+      "timestamp": 1738287212890
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "Here are the summaries of your emails from this week (January 29, 2025 - February 5, 2025):\n\n1. **Subject:** Upcoming 7% Price Adjustment for Concurrency plans – Effective March 1, 2025  \n   **From:** Travis CI  \n   **Date:** January 30, 2025  \n   **Snippet:** An important update about a 7% price increase due to rising IT infrastructure and operational costs.\n\n2. **Subject:** Pemberitahuan Notasi Khusus, Ekuitas dalam Pemantauan, Papan Akselerasi, Pengembangan dan Utama  \n   **From:** MiraeAsset  \n   **Date:** January 30, 2025  \n   **Snippet:** Announcement regarding a special notation list for issuers and securities.\n\n3. **Subject:** Akun Anda telah login di perangkat baru  \n   **From:** Tokopedia  \n   **Date:** January 30, 2025  \n   **Snippet:** Notification about a new login on a MacOSX device, indicating potential account access.\n\n4. **Subject:** Ajak Teman Buka UOB TMRW, dapatkan Cashback hingga Rp975 Ribu per Bulan!  \n   **From:** UOB TMRW  \n   **Date:** January 30, 2025  \n   **Snippet:** Promotion for cashback rewards for referring friends to open a UOB TMRW account.\n\n5. **Subject:** DigitalOcean Verification Code  \n   **From:** DigitalOcean  \n   **Date:** January 30, 2025  \n   **Snippet:** Verification code request due to a sign-in attempt from a different location or device.\n\nIf you'd like to take action on any of these emails such as deleting or applying labels, just let me know!"
+        }
+      ],
+      "timestamp": 1738287227140
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Get this week's emails and make summaries"
+        }
+      ],
+      "timestamp": 1738287247317
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "Here are the summaries of your emails from this week (January 24, 2025 – January 30, 2025):\n\n1. **Upcoming 7% Price Adjustment for Concurrency plans – Effective March 1, 2025**  \n   - **From:** Travis CI  \n   - **Date:** January 30, 2025  \n   - **Snippet:** Important update regarding a 7% price increase due to rising IT infrastructure and operational costs.\n\n2. **Pemberitahuan Notasi Khusus, Ekuitas dalam Pemantauan, Papan Akselerasi, Pengembangan dan Utama**  \n   - **From:** MiraeAsset  \n   - **Date:** January 30, 2025  \n   - **Snippet:** Announcement about special notation lists for issuers and securities.\n\n3. **Akun Anda telah login di perangkat baru**  \n   - **From:** Tokopedia  \n   - **Date:** January 30, 2025  \n   - **Snippet:** Notification about a new login to your account on a MacOSX device.\n\n4. **Ajak Teman Buka UOB TMRW, dapatkan Cashback hingga Rp975 Ribu per Bulan!**  \n   - **From:** UOB TMRW  \n   - **Date:** January 30, 2025  \n   - **Snippet:** Promotion for cashback rewards for referring friends to open a UOB TMRW account.\n\n5. **DigitalOcean Verification Code**  \n   - **From:** DigitalOcean  \n   - **Date:** January 30, 2025  \n   - **Snippet:** Verification code request after sign-in attempt from a different location or device.\n\n6. **Checkout Pesanan dengan Kartu Kredit Berhasil tanggal 30 Januari 2025**  \n   - **From:** Tokopedia  \n   - **Date:** January 30, 2025  \n   - **Snippet:** Confirmation that your payment has been verified and your order has been processed.\n\n7. **New Release: The Day Of The Jackal 🔫**  \n   - **From:** Max  \n   - **Date:** January 26, 2025  \n   - **Snippet:** Announcement of a new thriller series, \"The Day Of The Jackal\".\n\n8. **🐼 Catch up on Po's journey**  \n   - **From:** Max  \n   - **Date:** January 25, 2025  \n   - **Snippet:** Encouragement to stream Po's story before the release of Kung Fu Panda 4.\n\n9. **🔎High Potential: Serial Detektif Ringan Terbaru!**  \n   - **From:** Disney+ Hotstar  \n   - **Date:** January 24, 2025  \n   - **Snippet:** Promotion for a new comedy horror series featuring a unique detective duo.\n\n10. **One man. One mission. One Life 🌟**  \n    - **From:** Max  \n    - **Date:** January 24, 2025  \n    - **Snippet:** Film announcement telling the true story of Sir Nicholas Winton's rescue of 669 lives.\n\n11. **Embrace Love and New Beginnings**  \n    - **From:** The Gaia Hotel Bandung  \n    - **Date:** January 24, 2025  \n    - **Snippet:** Invitation to celebrate Valentine's Day and Chinese New Year.\n\n12. **Waktunya Combo Cashback! Tingkatkan Saldo Tabungan UOB Anda sekarang**  \n    - **From:** UOB Indonesia  \n    - **Date:** January 24, 2025  \n    - **Snippet:** Notification about increasing your UOB savings balance for more cashback offers.\n\n13. **Voice your thoughts for a D$20 gift!**  \n    - **From:** GHA DISCOVERY  \n    - **Date:** January 24, 2025  \n    - **Snippet:** Request for feedback to improve their loyalty program.\n\n14. **Your next getaway: Dubai**  \n    - **From:** Tripadvisor  \n    - **Date:** January 24, 2025  \n    - **Snippet:** Travel promotion for Dubai with highlights of desert safaris and sightseeing.\n\nIf you'd like to delete any of these emails or take any other actions, please let me know!"
+        }
+      ],
+      "timestamp": 1738287271768
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Get this month's email and count amount of emails recieved group by email sender"
+        }
+      ],
+      "timestamp": 1738287308844
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "Here is the count of emails received this month (January 2025) grouped by email sender:\n\n1. **Tokopedia**: 9 emails\n2. **Max**: 7 emails\n3. **LinkedIn**: 7 emails\n4. **First Media**: 6 emails\n5. **UOB TMRW**: 3 emails\n6. **DigitalOcean**: 4 emails\n7. **GHA DISCOVERY**: 3 emails\n8. **MiraeAsset**: 1 email\n9. **Travis CI**: 1 email\n10. **OpenAI Dev Digest**: 1 email\n11. **Spotify**: 2 emails\n12. **Tripadvisor**: 4 emails\n13. **MongoDB**: 4 emails\n14. **GitHub**: 4 emails\n15. **Parker Higgins (Tailscale)**: 1 email\n16. **MyEraspace**: 2 emails\n17. **Permata Bank e-Statement**: 1 email\n18. **Informa Indonesia**: 1 email\n19. **Zalora**: 1 email\n\nIf you need further actions or detail about these emails, just let me know!"
+        }
+      ],
+      "timestamp": 1738287381351
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Anything important from UOB?"
+        }
+      ],
+      "timestamp": 1738287986344
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "Here are the important emails from UOB:\n\n1. **Subject:** Ajak Teman Buka UOB TMRW, dapatkan Cashback hingga Rp975 Ribu per Bulan!  \n   **From:** UOB TMRW  \n   **Date:** January 30, 2025  \n   **Snippet:** Promotion that includes rewards for friends who sign up and transact using TMRW.\n\n2. **Subject:** Waktunya Combo Cashback! Tingkatkan Saldo Tabungan UOB Anda sekarang  \n   **From:** UOB Indonesia  \n   **Date:** January 24, 2025  \n   **Snippet:** Opportunity to enhance your UOB savings balance for cashback offers.\n\n3. **Subject:** Transaksi Pembayaran Tagihan atau Pembelian melalui Internet/Digital Banking UOB  \n   **From:** UOB Digital Bank  \n   **Date:** January 5, 2025  \n   **Snippet:** Notifications regarding bill payment or purchases made through UOB Digital Banking.\n\n4. **Subject:** Anda telah menerima uang melalui BI-FAST  \n   **From:** UOB  \n   **Date:** January 5, 2025  \n   **Snippet:** Notification confirming that you have received funds from another bank.\n\nIf you need to take any actions on these emails or need more details, just let me know!"
+        }
+      ],
+      "timestamp": 1738287999543
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Can you give me the link to the bill payment email"
+        }
+      ],
+      "timestamp": 1738288040408
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "I couldn't find any emails related to bill payments from UOB. It seems that there are no emails with that specific subject or content in your inbox. If you have a different query or need assistance with something else, please let me know!"
+        }
+      ],
+      "timestamp": 1738288044465
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Can you give me the link to the UOB bill payment email"
+        }
+      ],
+      "timestamp": 1738292891610
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "It seems there are no emails specifically mentioning \"UOB bill payment\" in your inbox. If you have more specific details about the email or if there's something else related to UOB or any other requests, please let me know!"
+        }
+      ],
+      "timestamp": 1738292895095
+    }
+  ]
+}

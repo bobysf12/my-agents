@@ -1,0 +1,69 @@
+{
+  "defaultUserId#newsession4#gmail-agent": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Get this month's email and count amount of emails recieved group by email sender"
+        }
+      ],
+      "timestamp": 1738306298849
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "Here are the emails categorized by sender for January 2025:\n\n1. **Tokopedia** - 8 emails\n2. **DigitalOcean Support** - 7 emails\n3. **Flip** - 7 emails\n4. **First Media** - 7 emails\n5. **UOB TMRW** - 4 emails\n6. **\\Livin'** - 3 emails\n7. **GHA DISCOVERY** - 3 emails\n8. **Spotify** - 2 emails\n9. **MiraeAsset** - 1 email\n10. **The Gaia Hotel Bandung** - 1 email\n11. **Product Hunt** - 1 email\n12. **MyEraspace** - 1 email\n13. **Parker Higgins (Tailscale)** - 1 email\n14. **OpenAI Dev Digest** - 1 email\n15. **MyEraspace (Erajaya)** - 1 email\n16. **UOBI e-statement** - 1 email\n17. **JD Sports** - 1 email\n18. **GitHub** - 1 email\n19. **The TinyMCE Team** - 1 email\n20. **An Qi from foundit** - 1 email\n21. **Team DigitalOcean** - 1 email\n22. **XL Customer Experience** - 1 email\n23. **OpenWeather Team** - 1 email  \n24. **Max** - 1 email\n25. **noreply_J347@homecenter.co.id** - 1 email\n26. **SPOON** - 1 email\n27. **Trans** - 1 email\n28. **Telkom** - 1 email\n29. **Kac** - 1 email\n30. **Souver** - 1 email\n31. **Footer** - 1 email\n32. **Kakao** - 1 email\n33. **BCA** - 1 email\n34. **Team On-Line** - 1 email\n\nThis gives you a total of 79 emails received in January 2025, grouped by sender."
+        }
+      ],
+      "timestamp": 1738306350982
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Delete emails from Flip and Digital Ocean Support"
+        }
+      ],
+      "timestamp": 1738306398607
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "I have successfully deleted the emails from Flip and DigitalOcean Support. If you need any further assistance, feel free to ask!"
+        }
+      ],
+      "timestamp": 1738306446233
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Read my email from yesterday"
+        }
+      ],
+      "timestamp": 1738364312927
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "Here are your emails from this week:\n\n1. **e-Statement Service for BCA RDN TAPRES 01-25**\n   - **From:** eStatement@klikbca.com\n   - **Date:** Sat, 1 Feb 2025 23:20:46 +0700 (WIB)\n   - **Snippet:** Yth Bpk/Ibu BOBY SANTOSO FREEDANTIUS, Terlampir adalah e-Statement BCA RDN (Rekening Dana Nasabah) TAPRES Anda, dengan nomor rekening 4585073998. Silakan membuka e-Statement BCA RDN Anda dengan\n   - **ID:** 194c2509facfc6eb\n\n2. **DigitalOcean - Received $129.51 payment for Riddle Story**\n   - **From:** DigitalOcean Support <support@digitalocean.com>\n   - **Date:** Sat, 01 Feb 2025 08:29:33 +0000 (UTC)\n   - **Snippet:** Payment Receipt for Riddle Story DigitalOcean Receipt - 01-Feb-2025 Amount paid: $129.51 DigitalOcean 101 Avenue of the Americas, 2nd Floor New York, NY 10013 To see your current month's usage,\n   - **ID:** 194c0a12bcfea1d5\n\n3. **[DigitalOcean] Your 2025-01 invoice for team: Riddle Story is available**\n   - **From:** DigitalOcean Support <support@digitalocean.com>\n   - **Date:** Sat, 01 Feb 2025 06:57:05 +0000 (UTC)\n   - **Snippet:** Thanks for using DigitalOcean Your 2025-01 invoice is now available for team: Riddle Story. The balance was automatically charged to your credit card, so you don't need to do anything. Happy Coding\n   - **ID:** 194c04c83d7f8153\n\n4. **Transaksi Pembayaran Tagihan atau Pembelian melalui Internet/Digital Banking UOB**\n   - **From:** UOB Digital Bank <noreply_UOB@uob.co.id>\n   - **Date:** Sat, 1 Feb 2025 13:31:58 +0700\n   - **Snippet:** Kepada Nasabah Yth. Terima kasih telah menggunakan layanan Internet /Digital Banking UOB Indonesia. Anda telah melakukan pembayaran tagihan/pembelian dengan informasi sebagai berikut: Jam,Tanggal : 01:\n   - **ID:** 194c0358418dd3f6\n\n5. **Transfer ke BOBY SANTOSO FREEDAN berhasil**\n   - **From:** Flip <no-reply@flip.id>\n   - **Date:** Sat, 1 Feb 2025 06:27:25 +0000\n   - **Snippet:** BUKTI TRANSFER Halo, Kak Boby Santoso Freedantius. Hore, transaksimu udah selesai diproses. Ini detail transaksinya: ID Transaksi #W769988208 Waktu Terkirim 01 Februari 2025 13:27 WIB Nama Tujuan BOBY\n   - **ID:** 194c0315be8ec578\n\nPlease let me know if you need further assistance with any of these emails!"
+        }
+      ],
+      "timestamp": 1738449244538
+    }
+  ],
+  "defaultUserId#newsession4#e-commerce-agent": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Need your help to find a Rice cooker in Tokopedia"
+        }
+      ],
+      "timestamp": 1738364194033
+    }
+  ]
+}

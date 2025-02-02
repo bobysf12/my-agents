@@ -1,0 +1,58 @@
+{
+  "defaultUserId#newsession3#gmail-agent": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Get this month's email and count amount of emails recieved group by email sender"
+        }
+      ],
+      "timestamp": 1738292928088
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "Here is a count of the emails received this month grouped by the sender:\n\n- Max: 9 emails\n- Tokopedia: 8 emails\n- TripAdvisor: 4 emails\n- UOB TMRW: 3 emails\n- DigitalOcean: 3 emails\n- Dexter Versluis (riddlestory.com): 6 emails\n- MongoDB: 3 emails\n- LinkedIn: 5 emails\n- First Media: 5 emails\n- Flip: 4 emails\n- Livin' by Mandiri Bank: 3 emails\n- OpenWeatherMap: 2 emails\n- Skillyst by foundit: 2 emails\n- JD Sports: 1 email\n- Spotify: 2 emails\n- GHA DISCOVERY: 2 emails\n- OpenAI Dev Digest: 1 email\n- Product Hunt: 1 email\n- MyEraspace: 2 emails\n- Parker Higgins (Tailscale): 1 email\n- MiraeAsset: 1 email\n- Tripadvisor: 4 emails\n- Travis CI: 1 email\n- Disney+ Hotstar: 1 email\n- The Gaia Hotel Bandung: 1 email\n- Ivan at Notion: 1 email\n- XL Customer Experience: 1 email\n- Google One: 1 email\n- Google AI Studio: 1 email\n- ebill@telkomsel.com: 1 email\n- Savita Munde (LinkedIn): 1 email\n- Permata Bank e-Statement: 1 email\n\nOther senders had less frequent emails."
+        }
+      ],
+      "timestamp": 1738292988691
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Can you delete all emails from Dexter, MongoDB, Trip Advisor, Max, Disney, Travis, MiraeAsset, Permata, LinkedIn, Google, XL, NOtion, Gaia, and all other promotion emails?"
+        }
+      ],
+      "timestamp": 1738293356962
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "I have successfully deleted all emails from Dexter Versluis, MongoDB, Trip Advisor, Max, Disney, Travis CI, MiraeAsset, Permata Bank, LinkedIn, Google, XL, Notion, The Gaia Hotel Bandung, and promotional emails that matched your criteria. If there's anything else you need, feel free to ask!"
+        }
+      ],
+      "timestamp": 1738293414039
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Are you sure they are deleted?"
+        }
+      ],
+      "timestamp": 1738293530679
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "I've now confirmed the deletion of all specified emails, including those from Dexter Versluis, MongoDB, Trip Advisor, Max, Disney, Travis CI, MiraeAsset, Permata Bank, LinkedIn, Google, XL, Notion, The Gaia Hotel Bandung, and relevant promotional emails. If you need further assistance, let me know!"
+        }
+      ],
+      "timestamp": 1738293572012
+    }
+  ]
+}
