@@ -1,5 +1,6 @@
 import { chromium } from "playwright-extra";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
+import TurndownService from "turndown";
 import { createLogger } from "../utils/logger";
 
 chromium.use(StealthPlugin());
@@ -87,6 +88,109 @@ export async function getHTMLBody(urls: string[], headless: boolean = true) {
             logger.error(error, "Error getting body HTML");
         }
     }
+
+    await browser.close();
+    return results;
+}
+
+export async function deepScrapeWebsite(
+    url: string,
+    options: { headless: boolean; maxDepth: number; transformToMarkdown: boolean } = {
+        headless: true,
+        maxDepth: 1,
+        transformToMarkdown: false,
+    },
+) {
+    const { headless, maxDepth, transformToMarkdown } = options;
+    const browser = await chromium.launch({ headless });
+    const page = await browser.newPage();
+    const results = [];
+    const visitedUrls = new Set();
+
+    await page.setExtraHTTPHeaders({
+        "User-Agent":
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+    });
+
+    async function scrape(url: string, depth: number = 0) {
+        if (depth > maxDepth) {
+            return;
+        }
+        if (visitedUrls.has(url)) {
+            return;
+        }
+        visitedUrls.add(url);
+
+        try {
+            logger.info("Navigating to: " + url);
+            await page.goto(url, { waitUntil: "networkidle", timeout: 30000 });
+
+            // Wait for the main content to load
+            await page.waitForSelector("body");
+            await page.waitForTimeout(2000);
+
+            logger.info("Page loaded: " + url);
+            const bodyHTML = await page.evaluate(() => {
+                const body = document.body.cloneNode(true);
+                // @ts-ignore
+                const scripts = body.getElementsByTagName("script");
+                // @ts-ignore
+                const iframes = body.getElementsByTagName("iframe");
+                // @ts-ignore
+                const images = body.getElementsByTagName("img");
+                // @ts-ignore
+                const videos = body.getElementsByTagName("video");
+
+                while (scripts.length > 0) {
+                    scripts[0].parentNode.removeChild(scripts[0]);
+                }
+
+                while (iframes.length > 0) {
+                    iframes[0].parentNode.removeChild(iframes[0]);
+                }
+
+                while (images.length > 0) {
+                    images[0].parentNode.removeChild(images[0]);
+                }
+
+                while (videos.length > 0) {
+                    videos[0].parentNode.removeChild(videos[0]);
+                }
+
+                // @ts-ignore
+                return body.innerHTML;
+            });
+
+            // Extract links and recursively scrape them
+            const links = await page.evaluate(() => {
+                return Array.from(document.querySelectorAll("a[href]"))
+                    .map((link) => (link as HTMLAnchorElement).href)
+                    .filter((href) => href.startsWith("http"));
+            });
+
+            logger.info(links, "Next links to navigate");
+
+            const turndownService = new TurndownService();
+
+            results.push({
+                url,
+                result: transformToMarkdown ? turndownService.turndown(bodyHTML) : bodyHTML,
+                links,
+            });
+
+            for (const link of links) {
+                await scrape(link, depth + 1);
+            }
+        } catch (error) {
+            results.push({
+                url,
+                error: error?.message,
+            });
+            logger.error(error, "Error getting body HTML");
+        }
+    }
+
+    await scrape(url);
 
     await browser.close();
     return results;

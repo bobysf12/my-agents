@@ -5,6 +5,7 @@ import { ZodError } from "zod";
 import pinoHttp from "pino-http";
 import authRouter from "./routes/auth-route";
 import aiRouter from "./routes/ai-route";
+import scrapeRouter from "./routes/scrape-route";
 import { createLogger } from "./utils/logger";
 
 dotenv.config();
@@ -34,6 +35,7 @@ app.get("/", (req: express.Request, res: express.Response) => {
 // Routes
 app.use("/auth", authRouter);
 app.use("/agents", aiRouter);
+app.use("/scrapers", scrapeRouter);
 
 // Error Handling Middleware (optional)
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
@@ -41,7 +43,7 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
     if (err instanceof ZodError) {
         res.status(400).json({ errors: err.errors });
     } else {
-        res.status(err.status || 500).json({ message: err.message });
+        res.status(err.status || 500).json({ message: err.message, stack: err.stack });
     }
 });
 

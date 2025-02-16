@@ -97,6 +97,7 @@ export class LLMOpenAIAgent extends Agent {
                         // Execute the tool with the parsed arguments
                         const toolResult = await tool.execute(toolArgs);
 
+                        this.log.info(toolResult, "Tool result");
                         // Add the tool's result to the conversation history
                         messages.push({ role: "tool", tool_call_id: toolCall.id, content: JSON.stringify(toolResult) });
                     } else {
