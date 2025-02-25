@@ -79,9 +79,9 @@ export async function researchTopic(query: string) {
         model: "gpt-4o",
     });
 
-    const result = await researchAgent.processRequest(query);
+    const result = await researchAgent.processRequest(`${query}. Current Unix Timestamp: ${Date.now()}`);
 
-    const json = JSON.parse(result.content[0].text);
+    const json = formatJsonOutput<{ title: string; summary: string; sources: string[] }>(result.content[0].text);
     return json;
 }
 
@@ -172,4 +172,11 @@ export async function getMinifluxTrendingTopics(query?: string) {
     const json = JSON.parse(result.content[0].text);
 
     return json;
+}
+
+function formatJsonOutput<T>(output: string): T {
+    // Use a regular expression to remove ```json and ``` from the output
+    const cleanText = output.replace(/```json|```/g, "").trim();
+
+    return JSON.parse(cleanText) as T;
 }
