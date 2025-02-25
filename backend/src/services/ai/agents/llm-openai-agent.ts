@@ -86,8 +86,8 @@ export class LLMOpenAIAgent extends Agent {
             const toolCalls = response.choices[0]?.message?.tool_calls;
             if (toolCalls && toolCalls.length > 0) {
                 this.log.info(`Tool calls detected: ${JSON.stringify(toolCalls)}`);
-                // Iterate through each tool call
-                for (const toolCall of toolCalls) {
+                // Execute all tool calls in parallel
+                const toolPromises = toolCalls.map(async (toolCall) => {
                     // Find the corresponding tool based on the tool call name
                     const tool = this.tools.find((t) => t.name === toolCall.function.name);
                     if (tool) {
@@ -98,12 +98,25 @@ export class LLMOpenAIAgent extends Agent {
                         const toolResult = await tool.execute(toolArgs);
 
                         this.log.info(toolResult, "Tool result");
-                        // Add the tool's result to the conversation history
-                        messages.push({ role: "tool", tool_call_id: toolCall.id, content: JSON.stringify(toolResult) });
+                        // Return the tool's result to be added to the conversation history
+                        return {
+                            role: "tool",
+                            tool_call_id: toolCall.id,
+                            content: JSON.stringify(toolResult),
+                        } as ChatCompletionMessageParam;
                     } else {
-                        return { role: ParticipantRole.ASSISTANT, content: [{ text: "No tool found" }] };
+                        return {
+                            role: "tool",
+                            tool_call_id: toolCall.id,
+                            content: "No result",
+                        } as ChatCompletionMessageParam;
                     }
-                }
+                });
+
+                // Wait for all tool executions to complete
+                const toolResults = await Promise.all(toolPromises);
+                // Add all tool results to the conversation history
+                messages.push(...toolResults);
             }
 
             // Check the finish reason for the response

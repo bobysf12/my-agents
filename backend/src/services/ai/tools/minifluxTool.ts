@@ -1,4 +1,5 @@
 import { ChatCompletionTool } from "openai/resources";
+import TurndownService from "turndown";
 import { Tool } from "./tool";
 import axios from "axios";
 import { createLogger } from "../../../utils/logger";
@@ -14,16 +15,16 @@ function getHeaders(token: string) {
     };
 }
 
-function parseEntry(entry: any) {
-    const content = htmlToText(entry.content);
-
+function parseEntry(entry: any, includeContent: boolean = false) {
+    const turndown = new TurndownService();
+    const content = turndown.turndown(entry.content);
     return {
         id: entry.id,
         feed_id: entry.feed_id,
         title: entry.title,
         url: entry.url,
         published_at: entry.published_at,
-        content,
+        content: includeContent ? content : undefined,
     };
 }
 
@@ -40,15 +41,15 @@ export class GetMinifluxEntries extends Tool {
                 properties: {
                     query: {
                         type: "string",
-                        description: "search query if needed",
+                        description: "Search for article title",
                     },
                     before: {
                         type: "number",
-                        description: "unix timestamp",
+                        description: "start date unix timestamp (seconds)",
                     },
                     after: {
                         type: "number",
-                        description: "unix timestamp",
+                        description: "end date unix timestamp (seconds)",
                     },
                 },
                 required: [],
@@ -77,14 +78,16 @@ export class GetMinifluxEntries extends Tool {
         if (query) searchParams.set("search", query);
         if (before) searchParams.set("before", before.toString());
         if (after) searchParams.set("after", after.toString());
+        // searchParams.set("limit", "20");
 
         const url = this.baseUrl + "/v1/entries?" + searchParams.toString();
 
         logger.debug(url, "Searching entries");
 
-        const result = await axios.get(url, { ...getHeaders(this.token), family: 4 });
+        const result = await axios.get(url, getHeaders(this.token));
+        logger.debug(result.data, "Fetch result");
 
-        const entries = result.data;
+        const entries = result.data.entries;
 
         return entries.map(parseEntry);
     }
@@ -124,15 +127,15 @@ export class GetMinifluxOriginalArticle extends Tool {
     }
 
     async execute(args: Record<string, any>) {
-        return this.fetchOriginalContent(args.query);
+        return this.fetchOriginalContent(args.entryId);
     }
 
     private async fetchOriginalContent(entryId: string) {
         const result = await axios.get(
-            this.baseUrl + "/v1/entries" + entryId + "/fetch-content",
+            this.baseUrl + "/v1/entries/" + entryId + "/fetch-content",
             getHeaders(this.token),
         );
 
-        return parseEntry(result.data);
+        return parseEntry(result.data, true);
     }
 }

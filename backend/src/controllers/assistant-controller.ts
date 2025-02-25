@@ -5,7 +5,6 @@ export const generateContent = async (req: Request, res: Response, next: NextFun
     try {
         const query = req.body.query;
         const response = await aiService.generateContent(query);
-        res.json({ data: response });
     } catch (error) {
         next(error);
     }
@@ -13,7 +12,7 @@ export const generateContent = async (req: Request, res: Response, next: NextFun
 
 export const getTrendingTopics = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const response = await aiService.getTopicIdeas();
+        const response = await aiService.getMinifluxTrendingTopics(req.query.query as string);
         res.json({ data: response });
     } catch (error) {
         next(error);

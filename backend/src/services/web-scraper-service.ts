@@ -97,7 +97,7 @@ export async function deepScrapeWebsite(
     url: string,
     options: { headless: boolean; maxDepth: number; transformToMarkdown: boolean } = {
         headless: true,
-        maxDepth: 1,
+        maxDepth: 0,
         transformToMarkdown: false,
     },
 ) {

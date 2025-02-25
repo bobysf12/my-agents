@@ -53,6 +53,24 @@
         }
       ],
       "timestamp": 1738449244538
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "text": "Read my email for today"
+        }
+      ],
+      "timestamp": 1738476881155
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "text": "Here are your emails from today, February 2, 2025:\n\n1. **Pembayaran Berhasil!**\n   - **From:** Livin' <noreply.livin@bankmandiri.co.id>\n   - **Date:** Sun, 2 Feb 2025 11:16:12 +0700 (WIB)\n   - **Snippet:** Pembayaran Berhasil Halo BOBY SANTOSO FREEDANTIUS, Berikut adalah detail transaksi Anda dengan QR: Penerima KOPI LOKALI Tangerang Selat - ID Tanggal 2 Feb 2025 Jam 11:16:08 WIB Nominal Transaksi Rp\n   - **ID:** 194c4dfbf0f6e3ae\n\n2. **Pembayaran Berhasil!**\n   - **From:** Livin' <noreply.livin@bankmandiri.co.id>\n   - **Date:** Sun, 2 Feb 2025 10:27:53 +0700 (WIB)\n   - **Snippet:** Pembayaran Berhasil Halo BOBY SANTOSO FREEDANTIUS, Berikut adalah detail transaksi Anda dengan QR: Penerima Kiwari Fruits, Fresh Mark TANGSEL - ID Tanggal 2 Feb 2025 Jam 10:27:48 WIB Nominal Transaksi\n   - **ID:** 194c4b36b8e61454\n\n3. **Riddle Story - Invoice Charge Successful**\n   - **From:** MongoDB Cloud <cloud-manager-support@mongodb.com>\n   - **Date:** Sun, 2 Feb 2025 03:18:33 +0000\n   - **Snippet:** ORGANIZATION Riddle Story Greetings from MongoDB, Your latest bill for the MongoDB Atlas organization Riddle Story is now available. Your account has been charged $11.25 and billed to a credit card\n   - **ID:** 194c4aac83cb1b4c\n\nIf you need further details on any of these emails, please let me know!"
+        }
+      ],
+      "timestamp": 1738476892988
     }
   ],
   "defaultUserId#newsession4#e-commerce-agent": [
