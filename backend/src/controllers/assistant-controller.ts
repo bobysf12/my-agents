@@ -18,3 +18,12 @@ export const getTrendingTopics = async (req: Request, res: Response, next: NextF
         next(error);
     }
 };
+
+export const generateInstagramPost = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const response = await aiService.generateInstagramPostSlides(req.body.link as string);
+        res.json({ data: response });
+    } catch (error) {
+        next(error);
+    }
+};

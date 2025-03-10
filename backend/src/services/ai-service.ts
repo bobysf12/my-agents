@@ -5,6 +5,8 @@ import { LLMOpenAIAgent } from "./ai/agents/llm-openai-agent";
 import { GetMinifluxEntries, GetMinifluxOriginalArticle } from "./ai/tools/minifluxTool";
 import { WebScraperTool } from "./ai/tools/scraperTool";
 import { TavilySearchTool } from "./ai/tools/tavilyTool";
+import { deepScrapeWebsite, getHTML, getHTMLBody } from "./web-scraper-service";
+import { chromium } from "playwright-extra";
 
 const logger = createLogger("Service::ai-service");
 
@@ -174,6 +176,145 @@ export async function getMinifluxTrendingTopics(query?: string) {
     return json;
 }
 
+// Tool to generate Instagram post from News link
+// - Scrape website
+// - Get content
+// - Remove all ads
+// - Restructure the html
+// - Rerender html, beautify, custom font (family, style, color)
+// - Make screenshots
+
+// - Generate summary
+
+export async function generateInstagramPostSlides(link: string) {
+    const scrapeResult = await deepScrapeWebsite(link, { maxUrls: 1, transformToMarkdown: true, headless: true });
+
+    if (scrapeResult.length === 0 || scrapeResult[0].error) throw new Error("Unable to scrape website");
+
+    logger.info(scrapeResult, "Scraper result");
+
+    const cleanHTMLResults = await cleanAndBeautifyHTML(scrapeResult[0].result);
+
+    // Render HTML using Playwright
+    const browser = await chromium.launch();
+
+    for (const cleanHtml of cleanHTMLResults.pages) {
+        const page = await browser.newPage();
+        await page.setViewportSize({ width: 1080, height: 1080 });
+        await page.setContent(cleanHtml.html);
+
+        // Take screenshots
+        const screenshotPath = `screenshots/${Date.now()}_screenshot.png`;
+        await page.screenshot({ path: screenshotPath, fullPage: true });
+    }
+    await browser.close();
+
+    return cleanHTMLResults;
+}
+
+interface Page {
+    index: number; // Order number of the page
+    html: string; // Full HTML of the page
+}
+
+interface PostOutput {
+    source_logo: string; // Logo image URL of where the news came from
+    source_name: string; // Name of the news website
+    source_url: string; // Website URL
+    pages: Page[]; // Array of pages
+}
+async function cleanAndBeautifyHTML(html: string) {
+    // Ask LLM to clean ads, recreate html, and add styling using tailwindcss. Keep images intact
+    // - News source logo
+    // - News source name
+    // - News source url
+    // - Pages
+    //  - index
+    //  - content html
+    //  - featured image
+    // - Caption
+
+    const agent = new LLMOpenAIAgent({
+        apiKey: OPENAI_API_KEY,
+        tools: [],
+        name: "Agent",
+        description: "",
+        customSystemPrompt: {
+            template: `
+<Role>You are an Instagram Creator Assistant</Role>
+
+<Objective>
+    - Create an engaging and visually appealing Instagram post from the given narrative that I will provide you.
+    - Use the same language as the news content to maintain consistency and authenticity.  
+    - Your target audience are Gen-Z, so translate the content make sense for them
+    - Use Indonesian language. Casual and Informal. Don't over do it. Don't include too many emojis.
+</Objective>
+
+<slide1>
+    <description>Create a bold, attention-grabbing Instagram slide that introduces the topic in a short sentence.</description>
+    <Styling>
+        - Use the OpenSans font family.  
+        - Use a very large high-contrast text
+        - If available, overlay the featured image as the background.
+        - Put the title in a white box centered at the middle bottom.
+        - Ensure the page fills in the entire 1080x1080.
+    </Styling>
+</slide1>
+
+<slide2>
+    <description>Create a clean and minimal slide that summarizes the key takeaways from the news.</description>
+    <guidelines>
+        <guideline>Use bullet points or a list format (max 3–4 points), but in the middle of the page.</guideline>
+        <guideline>Include a small footer text at the bottom to read more details in the caption</guideline>
+    </guidelines>
+    <Styling>
+        - Use the OpenSans font family.  
+        - Use very large high-contrast text
+        - Ensure the page fills in the entire 1080x1080.
+        - Put the bullet points at the center of the page
+    </Styling>
+</slide2>
+
+<caption>
+    <description>Write a casual but informative Instagram caption based on the news content.</description>
+    <guidelines>
+        <guideline>Start with a short, engaging hook to grab attention.</guideline>
+        <guideline>Provide the full details of the content. Make it short without leaving any important details.</guideline>
+        <guideline>Add a professional insight or personal experience (optional).</guideline>
+        <guideline>End with a call to action (CTA) encouraging comments, shares, or saves.</guideline>
+    </guidelines>
+</caption>
+
+
+<OutputFormat>
+    Respond with a valid Stringify JSON without adding any other text!  
+    {
+        "pages": [
+            {
+                "index": 1,
+                "html": "<HTML content for slide 1>"
+            },
+            {
+                "index": 2,
+                "html": "<HTML content for slide 2>"
+            },
+            {
+                "index": 3,
+                "html": "<HTML content for slide 3>"
+            }
+        ],
+        "caption": "<Complete caption of the news>"
+    }
+</OutputFormat>
+`,
+        },
+        model: "gpt-4o-mini",
+    });
+
+    const result = await agent.processRequest("Content narrative: " + html);
+
+    return formatJsonOutput<PostOutput>(result.content[0].text);
+}
 function formatJsonOutput<T>(output: string): T {
     // Use a regular expression to remove ```json and ``` from the output
     const cleanText = output.replace(/```json|```/g, "").trim();
